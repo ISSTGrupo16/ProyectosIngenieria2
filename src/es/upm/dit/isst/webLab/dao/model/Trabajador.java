@@ -28,11 +28,8 @@ public class Trabajador implements Serializable {
 	@ManyToMany
 	private Set<Proyecto> proyectos = new HashSet<Proyecto>(0);
 	
-	@OneToMany
-	private List <Trabajador> trabajadores;
-	
 	public Trabajador() {
-		this.trabajadores = new ArrayList<>();
+		this.proyectos = new HashSet<>();
 	}
 
 	public String getEmail() {
@@ -61,11 +58,11 @@ public class Trabajador implements Serializable {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "TRABAJADOR_PROYECTO", joinColumns = { @JoinColumn(name = "email") }, inverseJoinColumns = { @JoinColumn(name = "title") })
-	public Set<Proyecto> getCourses() {
+	public Set<Proyecto> getProyectos() {
 		return this.proyectos;
 	}
 
-	public void setCourses(Set<Proyecto> proyectos) {
+	public void setProyectos(Set<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
 	
@@ -76,14 +73,6 @@ public class Trabajador implements Serializable {
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
 	}	
-	
-	public List <Trabajador> getTrabajador() {
-		return trabajadores;
-	}
-
-	public void setTrabajador(List <Trabajador> trabajadores) {
-		this.trabajadores = trabajadores;
-	}
 
 }
 

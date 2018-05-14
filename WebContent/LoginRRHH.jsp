@@ -13,7 +13,7 @@
 
 <h2>Vista de Recursos Humanos.</h2>
 
-<button><a href="CrearUsuario.jsp">Crear Usuario</a></button>
+<button><a href="FormCrearUsuario.jsp">Crear Usuario</a></button>
 
 <h3>Listado de proyectos</h3>
 

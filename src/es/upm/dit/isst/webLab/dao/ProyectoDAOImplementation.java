@@ -36,13 +36,13 @@ public class ProyectoDAOImplementation implements ProyectoDAO {
 	
 
 	@Override
-	public Proyecto readProyecto(String email) {
+	public Proyecto readProyecto(String title) {
 		Proyecto proyecto = null;
 		Session session = SessionFactoryService.get().openSession();
 		
 		try {
 			session.beginTransaction();
-			proyecto = session.get(Proyecto.class, email);
+			proyecto = session.get(Proyecto.class, title);
 			session.getTransaction().commit();
 		}catch(Exception e) {
 			
@@ -85,30 +85,7 @@ public class ProyectoDAOImplementation implements ProyectoDAO {
 			session.close();
 		}
 	}
-	
 
-
-	@Override
-	public Proyecto loginProyecto(String email, String password) {
-		Proyecto proyecto = null;
-		Session session = SessionFactoryService.get().openSession();
-		
-		try {
-			session.beginTransaction();
-			
-
-					
-			proyecto = (Proyecto) session.createQuery("select t from Proyecto t where t.email =:email and t.password =:password").setParameter("email", email)
-					.setParameter("password", password)
-					.getSingleResult();
-			session.getTransaction().commit();
-		}catch(Exception e) {
-			
-		}finally {
-			session.close();
-		}
-		return proyecto;
-	}
 	
 
 	@Override

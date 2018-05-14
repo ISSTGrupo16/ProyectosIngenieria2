@@ -18,6 +18,9 @@ import es.upm.dit.isst.webLab.dao.model.Trabajador;
 @WebServlet("/FormNuevoUsuarioServlet")
 public class FormNuevoUsuarioServlet extends HttpServlet {
 	
+	private final String TRAB = "Trabajador";
+	private final String RH = "RRHH";
+	private final String GEST = "Gestor";
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,25 +29,23 @@ public class FormNuevoUsuarioServlet extends HttpServlet {
 		String name = req.getParameter("name");
 		String password = req.getParameter("password");
 		String tipo = req.getParameter("tipo");
-		String trab = "Trabajador";
-		String rh = "RRHH";
-		String gest = "Gestor";
+
 		
-		if(tipo == rh) {
+		if(RH.equals(tipo)) {
 			RRHH rrhh = new RRHH();
 			rrhh.setName(name);
 			rrhh.setEmail(email);
 			rrhh.setPassword(password);
 			RRHHDAOImplementation.getInstance().createRRHH(rrhh);
 		}
-		else if(tipo == gest){
+		else if(GEST.equals(tipo)){
 			Gestor gestor = new Gestor();
 			gestor.setName(name);
 			gestor.setEmail(email);
 			gestor.setPassword(password);
 			GestorDAOImplementation.getInstance().createGestor(gestor);
 		}
-		else if(tipo == trab){
+		else if(TRAB.equals(tipo)){
 			Trabajador trabajador = new Trabajador();
 			trabajador.setName(name);
 			trabajador.setEmail(email);
@@ -52,11 +53,7 @@ public class FormNuevoUsuarioServlet extends HttpServlet {
 			TrabajadorDAOImplementation.getInstance().createTrabajador(trabajador);
 		}
 		else {
-			Gestor gestor = new Gestor();
-			gestor.setName(tipo);
-			gestor.setEmail(email);
-			gestor.setPassword(password);
-			GestorDAOImplementation.getInstance().createGestor(gestor);
+			resp.sendRedirect(req.getContextPath() + "/FormNuevoUsuario.jsp");
 		}
 		
 		resp.sendRedirect(req.getContextPath() + "/LoginRRHH.jsp");

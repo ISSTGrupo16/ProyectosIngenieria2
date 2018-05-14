@@ -111,7 +111,7 @@ public class RRHHDAOImplementation implements RRHHDAO{
 		try {
 			session.beginTransaction();
 
-			rrhh = (RRHH) session.createQuery("select p from rrhh p where p.email =:email and p.password = :password")
+			rrhh = (RRHH) session.createQuery("select p from RRHH p where p.email =:email and p.password = :password")
 				.setParameter("email", email)
 				.setParameter("password", password)
 				.getSingleResult();

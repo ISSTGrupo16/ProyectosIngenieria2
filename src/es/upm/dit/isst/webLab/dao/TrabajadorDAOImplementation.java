@@ -111,7 +111,7 @@ public class TrabajadorDAOImplementation implements TrabajadorDAO{
 		try {
 			session.beginTransaction();
 
-			trabajador = (Trabajador) session.createQuery("select p from trabajador p where p.email =:email and p.password = :password")
+			trabajador = (Trabajador) session.createQuery("select p from Trabajador p where p.email =:email and p.password = :password")
 				.setParameter("email", email)
 				.setParameter("password", password)
 				.getSingleResult();
