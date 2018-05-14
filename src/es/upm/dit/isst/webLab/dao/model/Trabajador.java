@@ -1,20 +1,16 @@
 package es.upm.dit.isst.webLab.dao.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.io.Serializable;
-
-import java.util.List;
 
 @Entity
 public class Trabajador implements Serializable {
@@ -25,8 +21,13 @@ public class Trabajador implements Serializable {
 	private String name;
 	private String especialidad;
 	
-	@ManyToMany
-	private Set<Proyecto> proyectos = new HashSet<Proyecto>(0);
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Trabajador_Proyecto", 
+        joinColumns = { @JoinColumn(name = "email") }, 
+        inverseJoinColumns = { @JoinColumn(name = "title") }
+    )
+    Set<Proyecto> proyectos = new HashSet<>();
 	
 	public Trabajador() {
 		this.proyectos = new HashSet<>();
@@ -56,14 +57,16 @@ public class Trabajador implements Serializable {
 		this.name = name;
 	}
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "TRABAJADOR_PROYECTO", joinColumns = { @JoinColumn(name = "email") }, inverseJoinColumns = { @JoinColumn(name = "title") })
 	public Set<Proyecto> getProyectos() {
 		return this.proyectos;
 	}
 
 	public void setProyectos(Set<Proyecto> proyectos) {
 		this.proyectos = proyectos;
+	}
+	
+	public void addProyecto(Proyecto proyecto){
+		proyectos.add(proyecto);
 	}
 	
 	public String getEspecialidad() {

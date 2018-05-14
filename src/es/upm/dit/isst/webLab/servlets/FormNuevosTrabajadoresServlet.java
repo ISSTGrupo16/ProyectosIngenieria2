@@ -9,50 +9,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.webLab.dao.ProyectoDAOImplementation;
+import es.upm.dit.isst.webLab.dao.TrabajadorDAOImplementation;
 import es.upm.dit.isst.webLab.dao.model.Gestor;
 import es.upm.dit.isst.webLab.dao.model.Proyecto;
 import es.upm.dit.isst.webLab.dao.model.Trabajador;
 
 import java.util.List;
+import java.util.Set;
 
 @WebServlet("/FormNuevosTrabajadoresServlet")
 public class FormNuevosTrabajadoresServlet extends HttpServlet {
 	
-	private List <Trabajador> trabajadores;
+	private Set<Trabajador> trabajadores;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		Proyecto proyecto = (Proyecto)req.getSession().getAttribute("proyecto");
+		int tab_num = (int)req.getSession().getAttribute("trabajador_num");
 		
-		String proy_string = req.getParameter("proyecto");
-		Proyecto proyecto = (Proyecto)req.getSession().getAttribute(proy_string);
-		req.getSession().removeAttribute(proy_string);
-		
-		int tab_num = Integer.parseInt(req.getParameter("trabajador_num"));
-		
-		
-		
-		
-		for (int i =0; i<tab_num ; i++) {
-			
-			Trabajador trabajador = (Trabajador)req.getSession().getAttribute(String.valueOf(i));
-			
-			trabajadores.add(trabajador);
-			
-			//proyecto.setListaTrabajadores(trabajadores);
+		for (int i =1; i<=tab_num ; i++) {		
+			String email = (String) req.getParameter(String.valueOf(i));
+			Trabajador trabajador = TrabajadorDAOImplementation.getInstance().readTrabajador(email);
+			trabajador.addProyecto(proyecto);
+			TrabajadorDAOImplementation.getInstance().updateTrabajador(trabajador);
 		}
-		
-		proyecto.setListaTrabajadores(trabajadores);
-		
-		//proyecto.setStatus(1);
-		
-		//ProyectoDAOImplementation.getInstance().createProyecto(proyecto);
-		
-		resp.sendRedirect(req.getContextPath()+"/FormLogin.jsp");
-		
-		
-		
-
+			
+		resp.sendRedirect(req.getContextPath()+"/LoginGestor.jsp");
 		
 	}
 

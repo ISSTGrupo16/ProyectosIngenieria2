@@ -3,6 +3,7 @@ package es.upm.dit.isst.webLab.dao.model;
 import java.io.Serializable;
 
 import java.util.Date;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.ManyToMany;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Proyecto implements Serializable {
@@ -31,8 +33,8 @@ public class Proyecto implements Serializable {
 	@ManyToOne
 	private Gestor advisor;
 	
-	@ManyToMany
-	private List <Trabajador> lista_trabajadores;
+	@ManyToMany(mappedBy = "proyectos")
+    private Set<Trabajador> trabajadores = new HashSet<>();
 
 	public Proyecto() {
 		
@@ -114,17 +116,13 @@ public class Proyecto implements Serializable {
 		this.numeroHorasTotales = numeroHorasTotales;
 	}
 	
-	public List<Trabajador> getListaTrabajadores() {
-		return lista_trabajadores;
+	public Set<Trabajador> getListaTrabajadores() {
+		return trabajadores;
 	}
 
-	public void setListaTrabajadores(List<Trabajador> lista_trabajadores) {
-		this.lista_trabajadores = lista_trabajadores;
+	public void setListaTrabajadores(Set<Trabajador> lista_trabajadores) {
+		this.trabajadores = lista_trabajadores;
 	}
-	
-	
-		
-
 	
 }
 

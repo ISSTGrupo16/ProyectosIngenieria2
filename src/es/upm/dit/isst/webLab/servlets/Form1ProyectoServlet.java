@@ -28,23 +28,20 @@ public class Form1ProyectoServlet extends HttpServlet {
 		String numeroHorasTotales = req.getParameter("numeroHorasTotales");
 		Gestor gestorl = (Gestor) req.getSession().getAttribute("gestor");
 		
-	
-		
 		Proyecto proyecto = new Proyecto();
-		
 	
 		proyecto.setTitle(title);
 		proyecto.setAdvisor(gestorl);
 		proyecto.setNumeroTrabajadores(numeroTrabajadores);
 		proyecto.setNumeroHoras(numeroHorasTotales);
 		proyecto.setName(gestorl.getName());
-		
-		
-		req.getSession().setAttribute("trabajador_num", numeroTrabajadores);
-		
 		proyecto.setStatus(1);
 		
 		ProyectoDAOImplementation.getInstance().createProyecto(proyecto);
+		
+		req.getSession().setAttribute("trabajador_num", numeroTrabajadores);
+		req.getSession().setAttribute("proyecto", proyecto);
+
 		
 		resp.sendRedirect(req.getContextPath()+"/FormNuevosTrabajadores.jsp");
 
