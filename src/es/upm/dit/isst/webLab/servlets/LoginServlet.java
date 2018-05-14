@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 		if(USER_RRHH.equals(email) && PASS_RRHH.equals(password)) {
 			req.getSession().setAttribute("proyecto_list", ProyectoDAOImplementation.getInstance().readAllProyecto());
 			req.getSession().setAttribute("gestor_list", GestorDAOImplementation.getInstance().readAllGestor());
-			
+			req.getSession().setAttribute("trabajadores_list", TrabajadorDAOImplementation.getInstance().readAllTrabajador());
 			resp.sendRedirect(req.getContextPath() + "/LoginRRHH.jsp");
 		}
 		else if(rrhh != null) {

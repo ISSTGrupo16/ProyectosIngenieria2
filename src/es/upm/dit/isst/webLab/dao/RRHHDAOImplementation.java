@@ -90,7 +90,7 @@ public class RRHHDAOImplementation implements RRHHDAO{
 		try {
 			session.beginTransaction();
 			rrhhes.addAll(
-					session.createQuery("from rrhh").list()
+					session.createQuery("from RRHH").list()
 					);
 			
 			session.getTransaction().commit();

@@ -17,13 +17,7 @@
 <p>Email: ${tfg.name}</p>
 <p>Estado: ${tfg.status}</p>
 
-<c:if test="${tfg.status == 3}">
-<%@ include file="Form1Proyecto.jsp" %>
-</c:if>
 
-<c:if test="${tfg.status >= 4}">
-<a href="ServeFileServlet">Pito</a>
-</c:if>
 
 </body>
 </html>

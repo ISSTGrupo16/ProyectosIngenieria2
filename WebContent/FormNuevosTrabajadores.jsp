@@ -22,7 +22,7 @@
 
 <select name="${i}">
 	<option value="" disabled selected>Elija un trabajador</option>
-	<c:forEach items="${trabajador_list}" var="ti">
+	<c:forEach items="${trabajadores_list}" var="ti">
 	<option value=${ti.email}>${ti.name}-${ti.email}</option>
 	</c:forEach>
 </select></h3>

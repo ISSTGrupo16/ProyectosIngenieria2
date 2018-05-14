@@ -90,7 +90,7 @@ public class TrabajadorDAOImplementation implements TrabajadorDAO{
 		try {
 			session.beginTransaction();
 			trabajadores.addAll(
-					session.createQuery("from trabajador").list()
+					session.createQuery("from Trabajador").list()
 					);
 			
 			session.getTransaction().commit();
