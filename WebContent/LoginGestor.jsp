@@ -36,28 +36,28 @@
 		<c:forEach items="${gestor.advisedProyectos}" var="pi">
 			<tr>
 				<td>${pi.title}</td>
-				<td>
-					<c:if test="${pi.status == 1}">
+				<td><c:if test="${pi.status == 1}">
 						En Proceso
-					</c:if>
-					<c:if test="${pi.status == 2}">
+					</c:if> <c:if test="${pi.status == 2}">
 						Finalizado
-					</c:if>
-				</td>
+					</c:if></td>
 				<td>${pi.numeroTrabajadores}</td>
 				<td>${pi.numeroHorasTrabajadas}</td>
 				<td>${pi.numeroHorasTotales}</td>
-				<c:if test="${pi.status == 1}">	
-					<td>		
+				<c:if test="${pi.status == 1}">
+					<td>
 						<form action="FormNuevoTrabajadorServlet">
-							<input type="hidden" name="title" value="${pi.title}" /> <input
-								type="submit" value="Añadir Trabajador" />
+							<input type="hidden" name="title" value="${pi.title}" /> 
+							<button type="submit">Añadir Trabajador</button>
 						</form>
 					</td>
 				</c:if>
-				<c:if test="${pi.status == 1}">		
-					<td>	
-						<%@ include file="FinalizaProyecto.jsp"%>
+				<c:if test="${pi.status == 1}">
+					<td>
+						<form action="FinalizaProyectoServlet">
+							<input type="hidden" name="proyecto_title" value="${pi.title}" />
+							<button type="submit">Finalizar Proyecto</button>
+						</form>
 					</td>
 				</c:if>
 			</tr>
