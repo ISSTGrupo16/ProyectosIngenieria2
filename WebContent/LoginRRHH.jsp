@@ -33,7 +33,14 @@
 				<tr>
 					<td>${pi.title}</td>
 					<td>${pi.name}</td>
-					<td>${pi.status}</td>
+					<td>
+					<c:if test="${pi.status == 1}">
+						En Proceso
+					</c:if>
+					<c:if test="${pi.status == 2}">
+						Finalizado
+					</c:if>
+					</td>
 					<td>${pi.numeroTrabajadores}</td>
 					<td>${pi.numeroHorasTrabajadas}</td>
 					<td>${pi.numeroHorasTotales}</td>
