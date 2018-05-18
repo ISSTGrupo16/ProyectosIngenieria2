@@ -12,6 +12,7 @@
 <body>
 
 	<h2>Vista del gestor del proyecto</h2>
+	<%@ include file="FormLogout.jsp" %>
 
 	<p>Nombre: ${gestor.name}</p>
 	<p>Email: ${gestor.email}</p>

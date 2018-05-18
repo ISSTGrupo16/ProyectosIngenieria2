@@ -13,6 +13,9 @@
 
 <h2>Vista de Recursos Humanos.</h2>
 
+<%@ include file="FormLogout.jsp" %>
+
+
 <button><a href="FormCrearUsuario.jsp">Crear Usuario</a></button>
 
 <h3>Listado de proyectos</h3>

@@ -13,6 +13,8 @@
 
 <h2>Vista del trabajador</h2>
 
+<%@ include file="FormLogout.jsp" %>
+
 <c:forEach items="${proyectos_list}" var="pi">
 <tr>
 <td>${pi.title}</td>
