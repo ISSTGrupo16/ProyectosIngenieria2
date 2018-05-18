@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.webLab.dao.ContratoDAOImplementation;
 import es.upm.dit.isst.webLab.dao.GestorDAOImplementation;
 import es.upm.dit.isst.webLab.dao.TrabajadorDAOImplementation;
 import es.upm.dit.isst.webLab.dao.RRHHDAOImplementation;
@@ -57,6 +58,7 @@ public class LoginServlet extends HttpServlet {
 		else if(trabajador != null) {
 			//Redirigir vista trabajador
 			req.getSession().setAttribute("trabajador", trabajador);
+			req.getSession().setAttribute("proyectos_list", ContratoDAOImplementation.getInstance().readProyectos(trabajador));
 			resp.sendRedirect(req.getContextPath() + "/LoginTrabajador.jsp");
 		}
 		else {

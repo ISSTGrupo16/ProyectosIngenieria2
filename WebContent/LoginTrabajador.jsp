@@ -13,9 +13,16 @@
 
 <h2>Vista del trabajador</h2>
 
-<p>Nombre: ${tfg.title}</p>
-<p>Email: ${tfg.name}</p>
-<p>Estado: ${tfg.status}</p>
+<c:forEach items="${proyectos_list}" var="pi">
+<tr>
+<td>${pi.title}</td>
+<td>${pi.name}</td>
+<td>${pi.status}</td>
+<td>${pi.numeroTrabajadores}</td>
+<td>${pi.numeroHorasTrabajadas}</td>
+<td>${pi.numeroHorasTotales}</td>
+</tr>
+</c:forEach>
 
 
 

@@ -19,5 +19,7 @@
 		<mapping class="es.upm.dit.isst.webLab.dao.model.Gestor" />
 		<mapping class="es.upm.dit.isst.webLab.dao.model.Trabajador" />
 		<mapping class="es.upm.dit.isst.webLab.dao.model.RRHH" />
+		<mapping class="es.upm.dit.isst.webLab.dao.model.Contrato" />
+		<mapping class="es.upm.dit.isst.webLab.dao.model.Horas" />
 	</session-factory>
 </hibernate-configuration>

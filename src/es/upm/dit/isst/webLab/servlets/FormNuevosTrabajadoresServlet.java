@@ -8,19 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.upm.dit.isst.webLab.dao.ProyectoDAOImplementation;
 import es.upm.dit.isst.webLab.dao.TrabajadorDAOImplementation;
-import es.upm.dit.isst.webLab.dao.model.Gestor;
+import es.upm.dit.isst.webLab.dao.ContratoDAOImplementation;
 import es.upm.dit.isst.webLab.dao.model.Proyecto;
 import es.upm.dit.isst.webLab.dao.model.Trabajador;
-
-import java.util.List;
-import java.util.Set;
+import es.upm.dit.isst.webLab.dao.model.Contrato;
 
 @WebServlet("/FormNuevosTrabajadoresServlet")
 public class FormNuevosTrabajadoresServlet extends HttpServlet {
-	
-	private Set<Trabajador> trabajadores;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,8 +26,14 @@ public class FormNuevosTrabajadoresServlet extends HttpServlet {
 		for (int i =1; i<=tab_num ; i++) {		
 			String email = (String) req.getParameter(String.valueOf(i));
 			Trabajador trabajador = TrabajadorDAOImplementation.getInstance().readTrabajador(email);
-			trabajador.addProyecto(proyecto);
+			Contrato contrato = new Contrato();
+			contrato.setTrabajador(trabajador);
+			contrato.setProyecto(proyecto);
+			contrato.setHorasAsignadas(20);
+			contrato.setHorasTrabajadas(0);
+			trabajador.addContrato(contrato);
 			TrabajadorDAOImplementation.getInstance().updateTrabajador(trabajador);
+			ContratoDAOImplementation.getInstance().createContrato(contrato);
 		}
 			
 		resp.sendRedirect(req.getContextPath()+"/LoginGestor.jsp");

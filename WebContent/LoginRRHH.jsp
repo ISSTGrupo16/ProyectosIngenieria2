@@ -39,29 +39,10 @@
 <td>${pi.numeroHorasTrabajadas}</td>
 <td>${pi.numeroHorasTotales}</td>
 
-<td><c:if test="${pi.status == 2}">
-<%@ include file="Form3RRHH.jsp" %>
-</c:if></td>
-<td>
-<c:if test="${pi.status > 4}">
-<a href="ServeFileServlet">Descargar memoria</a>
-</c:if></td>
-<td>
-<c:if test="${pi.status == 5}">
-<%@ include file="Form3RRHH.jsp" %>
-</c:if>
-</td>
-<td>
-<c:if test="${pi.status == 7}">
-<%@ include file="Form3RRHH.jsp" %>
-</c:if>
-</td>
-
 </tr>
 </c:forEach>
 
 </table>
-
 
 <h3>Listado de profes</h3>
 

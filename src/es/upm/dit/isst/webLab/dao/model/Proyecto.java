@@ -1,18 +1,15 @@
 package es.upm.dit.isst.webLab.dao.model;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-
+import javax.persistence.OneToMany;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Proyecto implements Serializable {
@@ -33,11 +30,11 @@ public class Proyecto implements Serializable {
 	@ManyToOne
 	private Gestor advisor;
 	
-	@ManyToMany(mappedBy = "proyectos")
-    private Set<Trabajador> trabajadores = new HashSet<>();
+	@OneToMany(mappedBy = "proyecto", fetch = FetchType.EAGER)
+	private List<Contrato> contratos;
 
 	public Proyecto() {
-		
+		this.contratos = new ArrayList<Contrato>();
 	}
 
 	public String getName() {
@@ -116,13 +113,18 @@ public class Proyecto implements Serializable {
 		this.numeroHorasTotales = numeroHorasTotales;
 	}
 	
-	public Set<Trabajador> getListaTrabajadores() {
-		return trabajadores;
+	public List<Contrato> getContratos() {
+		return contratos;
 	}
 
-	public void setListaTrabajadores(Set<Trabajador> lista_trabajadores) {
-		this.trabajadores = lista_trabajadores;
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
 	}
+	
+	public void AddContratos(Contrato contrato) {
+		this.contratos.add(contrato);
+	}
+	
 	
 }
 
