@@ -44,6 +44,14 @@
 					<td>${pi.numeroTrabajadores}</td>
 					<td>${pi.numeroHorasTrabajadas}</td>
 					<td>${pi.numeroHorasTotales}</td>
+					<c:if test="${pi.status >= 2}">
+						<td>
+							<form action="DescargarInformeServlet">
+								<input type="hidden" name="title" value="${pi.title}"/>
+								<button type="submit">Descargar Informe</button>
+							</form>
+						</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>
