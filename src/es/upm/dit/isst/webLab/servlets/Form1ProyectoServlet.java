@@ -24,13 +24,17 @@ public class Form1ProyectoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
+		if(req.getParameter("title").isEmpty() || req.getParameter("numeroTrabajadores").isEmpty() ) {
+			resp.sendRedirect(req.getContextPath()+"/FormProyecto1.jsp");
+		}else {
+		
 		String title = req.getParameter("title");
 		int numeroTrabajadores = Integer.parseInt(req.getParameter("numeroTrabajadores"));
 		int trab = 0;
 		Gestor gestorl = (Gestor) req.getSession().getAttribute("gestor");
 		Date dia = new Date();
 		Proyecto proyecto = new Proyecto();
-	
+			
 		proyecto.setTitle(title);
 		proyecto.setAdvisor(gestorl);
 		proyecto.setNumeroTrabajadores(numeroTrabajadores);
@@ -46,7 +50,7 @@ public class Form1ProyectoServlet extends HttpServlet {
 		req.getSession().setAttribute("proyecto", proyecto);
 		
 		resp.sendRedirect(req.getContextPath()+"/FormNuevosTrabajadores.jsp");
-
+		}
 		
 	}
 	

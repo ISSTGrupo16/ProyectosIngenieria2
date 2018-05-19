@@ -11,7 +11,7 @@
 	    <script src="js/bootstrap.min.js"></script>   
 	</head>
 	<body>
-		<ul class="navbar navbar-dark">
+		<ul class="navbar">
   			<span class="navbar-brand mb-0 h1">Gestión de proyectos de ingeniería</span>
 		</ul>
 		
