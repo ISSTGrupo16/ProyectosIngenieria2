@@ -7,52 +7,55 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Vista del trabajador</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">   		
+	    <script src="js/bootstrap.min.js"></script>
+		<title>Vista de trabajador</title>
 	</head>
 	<body>
-	<h2>Vista del trabajador</h2>
-		<p>Nombre: ${trabajador.name}</p>
-			<p>Email: ${trabajador.email}</p>
-	<%@ include file="FormLogout.jsp" %>
-	
-	<h3>Mis contratos</h3>
-			<table border=1>
-				<tr>
-					<th>Nombre proyecto</th>
-					<th>Gestor</th>
-					<th>Estado</th>
-					<th>Horas Asignadas</th>
-					<th>Horas Trabajadas</th>
-				</tr>
-	
-				<c:forEach items="${contratos_list}" var="co">
-				<tr>
-					<td>${co.proyecto.title}</td>
-					<td>${co.proyecto.name}</td>
-					<td>
-					<c:if test="${co.proyecto.status == 1}">
-						En Proceso
-					</c:if>
-					<c:if test="${co.proyecto.status == 2}">
-						Finalizado
-					</c:if>
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="LoginTrabajador.jsp">Bienvenido, ${trabajador.name}</a>
+			</div>
+			<%@ include file="FormLogout.jsp" %>
+		</nav>
+		<h3>Mis contratos</h3>
+		<table class="table">
+			<tr>
+				<th>Nombre proyecto</th>
+				<th>Gestor</th>
+				<th>Estado</th>
+				<th>Horas Asignadas</th>
+				<th>Horas Trabajadas</th>
+			</tr>
+
+			<c:forEach items="${contratos_list}" var="co">
+			<tr>
+				<td>${co.proyecto.title}</td>
+				<td>${co.proyecto.name}</td>
+				<td>
+				<c:if test="${co.proyecto.status == 1}">
+					En Proceso
+				</c:if>
+				<c:if test="${co.proyecto.status == 2}">
+					Finalizado
+				</c:if>
+				</td>
+				<td>${co.horasAsignadas}</td>
+				<td>${co.horasTrabajadas}</td>
+				<c:if test="${co.proyecto.status != 2}">
+				<td>
+					<form action="HorasProyectoServlet">
+						<input type="hidden" name="proyecto" value=${co.proyecto.title} />
+						<input type="submit" value="Añadir Horas"/>
+					</form>
 					</td>
-					<td>${co.horasAsignadas}</td>
-					<td>${co.horasTrabajadas}</td>
-					<c:if test="${co.proyecto.status != 2}">
-					<td>
-						<form action="HorasProyectoServlet">
-							<input type="hidden" name="proyecto" value=${co.proyecto.title} />
-							<input type="submit" value="Añadir Horas"/>
-						</form>
-						</td>
-					</c:if>
-				</tr>
-				</c:forEach>
-			</table>
+				</c:if>
+			</tr>
+			</c:forEach>
+		</table>
 	
 	<h3>Mis proyectos</h3>
-			<table border=1>
+			<table class="table">
 				<tr>
 					<th>Nombre proyecto</th>
 					<th>Nombre de gestor</th>

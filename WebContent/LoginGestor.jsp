@@ -6,16 +6,18 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Vista del gestor del proyecto</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">   		
+    <script src="js/bootstrap.min.js"></script>
+	<title>Vista de gestor</title>
 </head>
 <body>
-
-	<h2>Vista del gestor del proyecto</h2>
-	<%@ include file="FormLogout.jsp"%>
-
-	<p>Nombre: ${gestor.name}</p>
-	<p>Email: ${gestor.email}</p>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="LoginGestor.jsp">Bienvenido, ${gestor.name}</a>
+		</div>
+		<%@ include file="FormLogout.jsp" %>
+	</nav>
 
 	<button>
 		<a href="FormProyecto1Servlet">Crear nuevo proyecto de ingeniería</a>
@@ -24,7 +26,7 @@
 
 	<h3>Listado de proyectos</h3>
 
-	<table border=1>
+	<table class="table">
 		<tr>
 			<th>Nombre proyecto</th>
 			<th>Estado</th>
