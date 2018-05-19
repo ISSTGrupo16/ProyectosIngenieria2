@@ -25,7 +25,8 @@ public class Form1ProyectoServlet extends HttpServlet {
 		
 		String title = req.getParameter("title");
 		int numeroTrabajadores = Integer.parseInt(req.getParameter("numeroTrabajadores"));
-		String numeroHorasTotales = req.getParameter("numeroHorasTotales");
+		int numeroHorasTotales = Integer.parseInt(req.getParameter("numeroHorasTotales"));
+		int trab = 0;
 		Gestor gestorl = (Gestor) req.getSession().getAttribute("gestor");
 		
 		Proyecto proyecto = new Proyecto();
@@ -34,6 +35,7 @@ public class Form1ProyectoServlet extends HttpServlet {
 		proyecto.setAdvisor(gestorl);
 		proyecto.setNumeroTrabajadores(numeroTrabajadores);
 		proyecto.setNumeroHoras(numeroHorasTotales);
+		proyecto.setNumeroHorasTrabajadas(trab);
 		proyecto.setName(gestorl.getName());
 		proyecto.setStatus(1);
 		

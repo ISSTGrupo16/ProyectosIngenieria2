@@ -12,7 +12,6 @@
 <body>
 
 <h2>Vista de Recursos Humanos.</h2>
-
 <%@ include file="FormLogout.jsp" %>
 
 

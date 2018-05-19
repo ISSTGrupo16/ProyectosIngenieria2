@@ -20,8 +20,8 @@ public class Proyecto implements Serializable {
 	private Date date;
 	private int status;
 	private int numeroTrabajadores;
-	private String numeroHorasTotales;
-	private String numeroHorasTrabajadas;
+	private int numeroHorasTotales;
+	private int numeroHorasTrabajadas;
 	
 	
 	@Lob
@@ -96,20 +96,20 @@ public class Proyecto implements Serializable {
 	}
 		
 	//Nuevo metodo horas trabajadas
-	public String getNumeroHorasTrabajadas() {
+	public int getNumeroHorasTrabajadas() {
 		return numeroHorasTrabajadas;
 	}
 
-	public void setNumeroHorasTrabajadas(String numeroHorasTrabajadas) {
+	public void setNumeroHorasTrabajadas(int numeroHorasTrabajadas) {
 		this.numeroHorasTrabajadas = numeroHorasTrabajadas;
 	}
 		
 	//Nuevo metodo horas totales
-	public String getNumeroHorasTotales() {
+	public int getNumeroHorasTotales() {
 		return numeroHorasTotales;
 	}
 
-	public void setNumeroHoras(String numeroHorasTotales) {
+	public void setNumeroHoras(int numeroHorasTotales) {
 		this.numeroHorasTotales = numeroHorasTotales;
 	}
 	
