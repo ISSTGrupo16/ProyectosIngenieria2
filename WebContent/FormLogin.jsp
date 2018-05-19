@@ -11,20 +11,21 @@
 	    <script src="js/bootstrap.min.js"></script>   
 	</head>
 	<body>
-		<form action="LoginServlet">
-			<h1>Gestión de proyectos de ingeniería</h1>
-			<h2>
-			<h2>Email:</h2>
-			<input type="text" name="email" placeholder="email" />
-			</h2>
+		<ul class="navbar navbar-dark">
+  			<span class="navbar-brand mb-0 h1">Gestión de proyectos de ingeniería</span>
+		</ul>
+		
+		<form class="needs-validation" action="LoginServlet">
+			<div class="form-group">
+			<Label for="email">Dirección email</label>
+			<input type="text" class="form-control" name="email" placeholder="email" />
+			</div>
 			
-			<h2>
-			<h2>Contraseña:</h2>
-			<input type="password" name = "password" placeholder="password"/>
-			</h2>
-			
-			<h2><button type="submit">Login</button></h2>
-			
+			<div class="form-group">
+			<label for="password">Contraseña</label>
+			<input type="password" class="form-control" name = "password" placeholder="password"/>
+			</div>
+			<button type="submit" class="btn btn-primary ">Login</button>
 			
 		</form>
 		
