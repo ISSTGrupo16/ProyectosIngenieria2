@@ -36,6 +36,11 @@ public class LoginServlet extends HttpServlet {
 		RRHH rrhh = RRHHDAOImplementation.getInstance().loginRRHH(email, password);
 		
 		if(USER_RRHH.equals(email) && PASS_RRHH.equals(password)) {
+			rrhh = new RRHH();
+			rrhh.setName(email);
+			rrhh.setEmail(email);
+			rrhh.setPassword(password);
+			req.getSession().setAttribute("rrhh", rrhh);
 			req.getSession().setAttribute("proyecto_list", ProyectoDAOImplementation.getInstance().readAllProyecto());
 			req.getSession().setAttribute("gestor_list", GestorDAOImplementation.getInstance().readAllGestor());
 			req.getSession().setAttribute("trabajadores_list", TrabajadorDAOImplementation.getInstance().readAllTrabajador());
