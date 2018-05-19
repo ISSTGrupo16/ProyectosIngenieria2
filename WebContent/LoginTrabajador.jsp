@@ -39,7 +39,7 @@
 					<c:if test="${pi.status != 2}">
 						<form action="HorasProyectoServlet">
 							<input type="hidden" name="proyecto" value=${pi.title} />
-							<input type ="submit"> Añadir horas Trabajadas </input>
+							<input type="submit" value="Añadir Horas"/>
 						</form>
 					</c:if>
 					</td>

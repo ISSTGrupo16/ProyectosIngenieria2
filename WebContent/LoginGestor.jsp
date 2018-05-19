@@ -5,62 +5,52 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Vista del gestor del proyecto</title>
-</head>
-<body>
-
-	<h2>Vista del gestor del proyecto</h2>
-	<%@ include file="FormLogout.jsp" %>
-
-	<p>Nombre: ${gestor.name}</p>
-	<p>Email: ${gestor.email}</p>
-
-	<button>
-		<a href="FormProyecto1Servlet">Crear nuevo proyecto de ingeniería</a>
-	</button>
-
-
-	<h3>Listado de proyectos</h3>
-
-	<table border=1>
-		<tr>
-			<th>Nombre proyecto</th>
-			<th>Nombre de gestor</th>
-
-			<th>Estado</th>
-			<th>Nº Trabajadores</th>
-			<th>Horas Trabajadas</th>
-			<th>Horas Totales</th>
-			<th>Info</th>
-		</tr>
-
-		<c:forEach items="${gestor.advisedProyectos}" var="pi">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Vista del gestor del proyecto</title>
+	</head>
+	<body>
+	
+		<h2>Vista del gestor del proyecto</h2>
+		<%@ include file="FormLogout.jsp" %>
+	
+		<p>Nombre: ${gestor.name}</p>
+		<p>Email: ${gestor.email}</p>
+	
+		<button>
+			<a href="FormProyecto1Servlet">Crear nuevo proyecto de ingeniería</a>
+		</button>
+	
+	
+		<h3>Listado de proyectos</h3>
+	
+		<table border=1>
 			<tr>
-				<td>${pi.title}</td>
-				<td>${pi.name}</td>
-
-				<td>${pi.status}</td>
-				<td>${pi.numeroTrabajadores}</td>
-				<td>${pi.numeroHorasTrabajadas}</td>
-				<td>${pi.numeroHorasTotales}</td>
-
-				<c:if test="${pi.status == 1}">
-				</c:if>
-				</td>
-				<td><c:if test="${pi.status >= 4}">
-						<a href="ServeFileServlet">Descargar memoria</a>
-					</c:if></td>
-				<td><c:if test="${pi.status == 4}">
-					</c:if></td>
-				<td><c:if test="${pi.status == 6 }">
-						<a href="ServeFileServlet">Descargar memoria</a>
-					</c:if></td>
+				<th>Nombre proyecto</th>
+				<th>Estado</th>
+				<th>Nº Trabajadores</th>
+				<th>Horas Trabajadas</th>
+				<th>Horas Totales</th>
 			</tr>
-		</c:forEach>
-
-	</table>
-
-</body>
+	
+			<c:forEach items="${gestor.advisedProyectos}" var="pi">
+				<tr>
+					<td>${pi.title}</td>
+					<td>${pi.status}</td>
+					<td>${pi.numeroTrabajadores}</td>
+					<td>${pi.numeroHorasTrabajadas}</td>
+					<td>${pi.numeroHorasTotales}</td>
+					<c:if test="${pi.status == 1}">
+					<td>
+						<form action="FormNuevoTrabajadorServlet">
+							<input type="hidden" name="title" value="${pi.title}"/>
+							<input type="submit" value="Añadir Trabajador"/>
+						</Form>
+					</td>
+					</c:if>
+				</tr>
+			</c:forEach>
+		</table>
+	
+	</body>
 </html>

@@ -1,6 +1,7 @@
 package es.upm.dit.isst.webLab.servlets;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,25 +26,24 @@ public class Form1ProyectoServlet extends HttpServlet {
 		
 		String title = req.getParameter("title");
 		int numeroTrabajadores = Integer.parseInt(req.getParameter("numeroTrabajadores"));
-		int numeroHorasTotales = Integer.parseInt(req.getParameter("numeroHorasTotales"));
 		int trab = 0;
 		Gestor gestorl = (Gestor) req.getSession().getAttribute("gestor");
-		
+		Date dia = new Date();
 		Proyecto proyecto = new Proyecto();
 	
 		proyecto.setTitle(title);
 		proyecto.setAdvisor(gestorl);
 		proyecto.setNumeroTrabajadores(numeroTrabajadores);
-		proyecto.setNumeroHoras(numeroHorasTotales);
+		proyecto.setNumeroHoras(trab);
 		proyecto.setNumeroHorasTrabajadas(trab);
 		proyecto.setName(gestorl.getName());
+		proyecto.setDate(dia);
 		proyecto.setStatus(1);
 		
 		ProyectoDAOImplementation.getInstance().createProyecto(proyecto);
 		
 		req.getSession().setAttribute("trabajador_num", numeroTrabajadores);
 		req.getSession().setAttribute("proyecto", proyecto);
-
 		
 		resp.sendRedirect(req.getContextPath()+"/FormNuevosTrabajadores.jsp");
 
