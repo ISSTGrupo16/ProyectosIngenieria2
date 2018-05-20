@@ -18,43 +18,53 @@
 			</div>
 			<%@ include file="FormLogout.jsp" %>
 		</nav>
-		<h3>Mis contratos</h3>
-		<table class="table">
-			<tr>
-				<th>Nombre proyecto</th>
-				<th>Gestor</th>
-				<th>Estado</th>
-				<th>Horas Asignadas</th>
-				<th>Horas Trabajadas</th>
-			</tr>
-
-			<c:forEach items="${contratos_list}" var="co">
-			<tr>
-				<td>${co.proyecto.title}</td>
-				<td>${co.proyecto.name}</td>
-				<td>
-				<c:if test="${co.proyecto.status == 1}">
-					En Proceso
-				</c:if>
-				<c:if test="${co.proyecto.status == 2}">
-					Finalizado
-				</c:if>
-				</td>
-				<td>${co.horasAsignadas}</td>
-				<td>${co.horasTrabajadas}</td>
-				<c:if test="${co.proyecto.status != 2}">
-				<td>
-					<form action="HorasProyectoServlet">
-						<input type="hidden" name="proyecto" value=${co.proyecto.title} />
-						<input type="submit" value="Añadir Horas"/>
-					</form>
-					</td>
-				</c:if>
-			</tr>
-			</c:forEach>
-		</table>
+		
+		<div class="panel panel-info">
+		
+			<div class="panel-heading">Mis contratos</div>
+			
+			<table class="table">
+				<tr>
+					<th>Nombre proyecto</th>
+					<th>Gestor</th>
+					<th>Estado</th>
+					<th>Horas Asignadas</th>
+					<th>Horas Trabajadas</th>
+				</tr>
 	
-	<h3>Mis proyectos</h3>
+				<c:forEach items="${contratos_list}" var="co">
+				<tr>
+					<td>${co.proyecto.title}</td>
+					<td>${co.proyecto.name}</td>
+					<td>
+					<c:if test="${co.proyecto.status == 1}">
+						<div class="progress">
+	  						<div class="progress-bar" role="progressbar" aria-valuenow="${(co.horasTrabajadas/co.horasAsignadas)*100}" aria-valuemin="0" aria-valuemax="100" style="width: ${(co.horasTrabajadas/co.horasAsignadas)*100}%;">
+	    					<span class="sr-only">${(co.horasTrabajadas/co.horasAsignadas)*100}% Complete</span>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${co.proyecto.status == 2}">
+						<li class="list-group-item list-group-item-success" role="alert">Finalizado</li>
+					</c:if>
+					</td>
+					<td>${co.horasAsignadas}</td>
+					<td>${co.horasTrabajadas}</td>
+					<c:if test="${co.proyecto.status != 2}">
+					<td>
+						<form action="HorasProyectoServlet">
+							<input type="hidden" name="proyecto" value=${co.proyecto.title} />
+							<input type="submit" value="Añadir Horas"/>
+						</form>
+						</td>
+					</c:if>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
+	
+		<div class="panel panel-info">
+			<div class="panel-heading">Proyectos de los que forma parte</div>
 			<table class="table">
 				<tr>
 					<th>Nombre proyecto</th>
@@ -71,10 +81,14 @@
 					<td>${pi.name}</td>
 					<td>
 					<c:if test="${pi.status == 1}">
-						En Proceso
+						<div class="progress">
+	  						<div class="progress-bar" role="progressbar" aria-valuenow="${(pi.numeroHorasTrabajadas/pi.numeroHorasTotales)*100}" aria-valuemin="0" aria-valuemax="100" style="width: ${(pi.numeroHorasTrabajadas/pi.numeroHorasTotales)*100}%;">
+	    					<span class="sr-only">${(pi.numeroHorasTrabajadas/pi.numeroHorasTotales)*100}% Complete</span>
+							</div>
+						</div>
 					</c:if>
 					<c:if test="${pi.status == 2}">
-						Finalizado
+						<li class="list-group-item list-group-item-success" role="alert">Finalizado</li>
 					</c:if>
 					</td>
 					<td>${pi.numeroTrabajadores}</td>
@@ -83,5 +97,6 @@
 				</tr>
 				</c:forEach>
 			</table>
+		</div>
 	</body>
 </html>
