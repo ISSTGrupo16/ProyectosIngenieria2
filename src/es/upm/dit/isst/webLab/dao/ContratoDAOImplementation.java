@@ -169,6 +169,25 @@ public class ContratoDAOImplementation implements ContratoDAO {
 		}
 		return contrato;
 	}
+	
+	@Override
+	public List<Contrato> readContrato(Trabajador trabajador) {
+		List<Contrato> contrato = new ArrayList<>();
+		Session session = SessionFactoryService.get().openSession();
+		try {
+			session.beginTransaction();
+			contrato = session.createQuery("select p from Contrato p where p.trabajador = :trabajador")
+				.setParameter("trabajador", trabajador)
+				.list();
+			session.getTransaction().commit();
+		}
+		catch (Exception e){
+			
+		}finally {
+			session.close();
+		}
+		return contrato;
+	}
 
 
 }

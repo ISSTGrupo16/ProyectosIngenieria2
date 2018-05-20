@@ -14,7 +14,7 @@
 		<form action="HorasServlet">
 			<h3>Horas de inicio del trabajo: <input type="datetime-local" name="hora_inicio"></h3>
 			<h3>Horas de finalización del trabajo: <input type="datetime-local" name="hora_fin"> </h3>
-			<input type = "submit">Confirmar</input>
+			<input type = "submit" value="Confirmar"/>
 		</form>
 	</body>
 </html>

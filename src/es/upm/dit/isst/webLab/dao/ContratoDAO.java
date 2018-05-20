@@ -16,5 +16,6 @@ public interface ContratoDAO {
 	public List<Proyecto> readProyectos(Trabajador trabajador);
 	public List<Trabajador> readTrabajador(Proyecto proyecto);
 	public Contrato readContrato(Trabajador trabajador, Proyecto proyecto);
+	public List<Contrato> readContrato(Trabajador trabajador);
 
 }

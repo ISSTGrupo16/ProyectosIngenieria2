@@ -17,6 +17,7 @@ import static java.lang.Math.toIntExact;
 import es.upm.dit.isst.webLab.dao.ContratoDAOImplementation;
 import es.upm.dit.isst.webLab.dao.HorasDAOImplementation;
 import es.upm.dit.isst.webLab.dao.ProyectoDAOImplementation;
+import es.upm.dit.isst.webLab.dao.TrabajadorDAOImplementation;
 import es.upm.dit.isst.webLab.dao.model.Proyecto;
 import es.upm.dit.isst.webLab.dao.model.Trabajador;
 import es.upm.dit.isst.webLab.dao.model.Contrato;
@@ -58,12 +59,19 @@ public class HorasServlet extends HttpServlet {
 		proyecto.setNumeroHorasTrabajadas(proyecto.getNumeroHorasTrabajadas() + diffInt);
 		ProyectoDAOImplementation.getInstance().updateProyecto(proyecto);
 		Contrato contrato = ContratoDAOImplementation.getInstance().readContrato(trabajador, proyecto);
+		contrato.setHorasTrabajadas(contrato.getHorasTrabajadas() + diffInt);
+		ContratoDAOImplementation.getInstance().updateContrato(contrato);
 		
 		hora.setContrato(contrato);
 		hora.setHoraComienzo(horaInicio);
 		hora.setHoraFinal(horaFin);
 		hora.setHoras(diffInt);
 		HorasDAOImplementation.getInstance().createHoras(hora);
+		
+		trabajador = TrabajadorDAOImplementation.getInstance().loginTrabajador(trabajador.getEmail(), trabajador.getPassword());
+		req.getSession().setAttribute("trabajador", trabajador);
+		req.getSession().setAttribute("proyectos_list", ContratoDAOImplementation.getInstance().readProyectos(trabajador));
+		req.getSession().setAttribute("contratos_list", ContratoDAOImplementation.getInstance().readContrato(trabajador));
 		
 		resp.sendRedirect(req.getContextPath() + "/LoginTrabajador.jsp");
 	}

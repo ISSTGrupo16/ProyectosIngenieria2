@@ -17,6 +17,7 @@ import es.upm.dit.isst.webLab.dao.ProyectoDAOImplementation;
 import es.upm.dit.isst.webLab.dao.model.Gestor;
 import es.upm.dit.isst.webLab.dao.model.Trabajador;
 import es.upm.dit.isst.webLab.dao.model.RRHH;
+import es.upm.dit.isst.webLab.dao.model.Contrato;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -47,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("proyecto_list", ProyectoDAOImplementation.getInstance().readAllProyecto());
 			req.getSession().setAttribute("gestor_list", GestorDAOImplementation.getInstance().readAllGestor());
 			req.getSession().setAttribute("trabajadores_list", TrabajadorDAOImplementation.getInstance().readAllTrabajador());
+		
 			resp.sendRedirect(req.getContextPath() + "/LoginRRHH.jsp");
 		}
 		else if(gestor != null) {
@@ -59,6 +61,7 @@ public class LoginServlet extends HttpServlet {
 			//Redirigir vista trabajador
 			req.getSession().setAttribute("trabajador", trabajador);
 			req.getSession().setAttribute("proyectos_list", ContratoDAOImplementation.getInstance().readProyectos(trabajador));
+			req.getSession().setAttribute("contratos_list", ContratoDAOImplementation.getInstance().readContrato(trabajador));
 			resp.sendRedirect(req.getContextPath() + "/LoginTrabajador.jsp");
 		}
 		else {

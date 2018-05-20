@@ -15,6 +15,38 @@
 			<p>Email: ${trabajador.email}</p>
 	<%@ include file="FormLogout.jsp" %>
 	
+	<h3>Mis contratos</h3>
+			<table border=1>
+				<tr>
+					<th>Nombre proyecto</th>
+					<th>Gestor</th>
+					<th>Estado</th>
+					<th>Horas Asignadas</th>
+					<th>Horas Trabajadas</th>
+					<c:if test="${co.proyecto.status != 2}">
+					<th>Añadir Horas</th>
+					</c:if>
+				</tr>
+	
+				<c:forEach items="${contratos_list}" var="co">
+				<tr>
+					<td>${co.proyecto.title}</td>
+					<td>${co.proyecto.name}</td>
+					<td>${co.proyecto.status}</td>
+					<td>${co.horasAsignadas}</td>
+					<td>${co.horasTrabajadas}</td>
+					<c:if test="${co.proyecto.status != 2}">
+					<td>
+						<form action="HorasProyectoServlet">
+							<input type="hidden" name="proyecto" value=${co.proyecto.title} />
+							<input type="submit" value="Añadir Horas"/>
+						</form>
+						</td>
+					</c:if>
+				</tr>
+				</c:forEach>
+			</table>
+	
 	<h3>Mis proyectos</h3>
 			<table border=1>
 				<tr>
@@ -35,14 +67,6 @@
 					<td>${pi.numeroTrabajadores}</td>
 					<td>${pi.numeroHorasTrabajadas}</td>
 					<td>${pi.numeroHorasTotales}</td>
-					<td>
-					<c:if test="${pi.status != 2}">
-						<form action="HorasProyectoServlet">
-							<input type="hidden" name="proyecto" value=${pi.title} />
-							<input type="submit" value="Añadir Horas"/>
-						</form>
-					</c:if>
-					</td>
 				</tr>
 				</c:forEach>
 			</table>
