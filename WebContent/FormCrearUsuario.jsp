@@ -20,7 +20,7 @@
 	</nav>
 		
 
-<form action="FormNuevoUsuarioServlet" class="needs-validationsssss">
+<form action="FormNuevoUsuarioServlet" class="needs-validation">
 	<label for="email"><br/>Email</label>
 	<input class="form-control" type="text" name="email" placeholder="Email" />
 	<label for="name"><br/>Nombre Completo del usuario</label>
