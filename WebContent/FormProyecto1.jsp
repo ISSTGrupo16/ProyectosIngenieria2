@@ -13,8 +13,14 @@
 </head>
 <body>
 
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="FormProyecto1.jsp">Creando un proyecto gestionado por ${gestor.name}</a>
+		</div>
+		<%@ include file="FormLogout.jsp" %>
+	</nav>
 
-<%@ include file = "Form1Proyecto.jsp" %>
+	<%@ include file = "Form1Proyecto.jsp" %>
 
 </body>
 </html>

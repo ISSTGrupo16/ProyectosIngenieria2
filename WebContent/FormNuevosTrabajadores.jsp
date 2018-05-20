@@ -12,28 +12,34 @@
 		<title>Añadir Trabajadores</title>
 	</head>
 	<body>
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="FormNuevosTrabajadores.jsp">Añada trabajadores al proyecto ${proyecto.title}</a>
+			</div>
+		</nav>
+	
+	
+		
 		<form action="FormNuevosTrabajadoresServlet">
-	
-			<h1 name=proyecto>${proyecto.title}: Añadir trabajadores</h1>
-	
-			<h2>Elección de trabajadores</h2>
-			<h3 name=trabajador_num>Ha seleccionado ${trabajador_num} trabajadores</h3>
-	
+			<div class="page-header">
+			  <h2>Ha seleccionado ${trabajador_num} trabajadores</h2>
+			</div>
+			
 			<c:forEach var="i" begin="1" end="${trabajador_num}">
-				<h3>
-					Trabajador ${i} : 
-					<select name="${i}">
+				<div class="form-group">
+					<Label for="trabajador">Trabajador ${i} : </Label>
+					<select class="form-control" name="${i}">
 						<option value="" disabled selected>Elija un trabajador</option>
 						<c:forEach items="${trabajadores_list}" var="ti">
 							<option value=${ti.email}>${ti.name}-${ti.email}</option>
 						</c:forEach>
 					</select>
 					Horas Asignadas:
-					<input type="number" name="l${i}"></input>
-				</h3>
+					<input type="number" class="form-control" name="l${i}"></input>
+				</div>	
 			</c:forEach>
 			<h1>
-				<button type="submit">Aceptar</button>
+				<button type="submit" class="btn btn-primary">Aceptar</button>
 			</h1>
 		</form>
 	</body>
