@@ -22,6 +22,8 @@ public class FormNuevoTrabajadorServlet extends HttpServlet {
 		
 		String title = req.getParameter("title");
 		Proyecto proy = ProyectoDAOImplementation.getInstance().readProyecto(title);
+		proy.setNumeroTrabajadores(proy.getNumeroTrabajadores() + 1);
+		ProyectoDAOImplementation.getInstance().updateProyecto(proy);
 		int num = 1;
 		req.getSession().setAttribute("trabajador_num", num);
 		req.getSession().setAttribute("proyecto", proy);
