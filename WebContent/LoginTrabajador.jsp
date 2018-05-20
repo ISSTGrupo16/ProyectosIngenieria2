@@ -23,9 +23,6 @@
 					<th>Estado</th>
 					<th>Horas Asignadas</th>
 					<th>Horas Trabajadas</th>
-					<c:if test="${co.proyecto.status != 2}">
-					<th>Añadir Horas</th>
-					</c:if>
 				</tr>
 	
 				<c:forEach items="${contratos_list}" var="co">
@@ -63,7 +60,6 @@
 					<th>Nº Trabajadores</th>
 					<th>Horas Trabajadas</th>
 					<th>Horas Totales Asignadas</th>
-					<th>Añadir horas</th>
 				</tr>
 	
 				<c:forEach items="${proyectos_list}" var="pi">

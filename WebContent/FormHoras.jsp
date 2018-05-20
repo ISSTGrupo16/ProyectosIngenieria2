@@ -12,8 +12,8 @@
 	<body>
 		<h2>Añadir horas al proyecto ${proyecto_horas.title} ${proyecto_horas.numeroHorasTrabajadas}</h2>
 		<form action="HorasServlet">
-			<h3>Horas de inicio del trabajo: <input type="datetime-local" name="hora_inicio"></h3>
-			<h3>Horas de finalización del trabajo: <input type="datetime-local" name="hora_fin"> </h3>
+			<h3>Horas de inicio del trabajo: <input type="datetime-local"  min="2018-01-01T00" max="2050-01-01T00" name="hora_inicio" value="${hoy_dia}" step="3600"></h3>
+			<h3>Horas de finalización del trabajo: <input type="datetime-local" min="2018-01-01T00" max="2050-01-01T00" name="hora_fin" value="${hoy_dia2}" step="3600"> </h3>
 			<input type = "submit" value="Confirmar"/>
 		</form>
 	</body>
